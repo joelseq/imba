@@ -1882,16 +1882,16 @@
 			
 			tag.prototype.__disabled = {dom: true,name: 'disabled'};
 			tag.prototype.disabled = function(v){ return this.dom().disabled; }
-			tag.prototype.setDisabled = function(v){ if(v != this.dom().disabled){ this.dom().disabled = v }; return this; };
+			tag.prototype.setDisabled = function(v){ if (v != this.dom().disabled) { this.dom().disabled = v }; return this; };
 		});
 		
 		tag$.defineTag('canvas', function(tag){
 			tag.prototype.__width = {dom: true,name: 'width'};
 			tag.prototype.width = function(v){ return this.dom().width; }
-			tag.prototype.setWidth = function(v){ if(v != this.dom().width){ this.dom().width = v }; return this; };
+			tag.prototype.setWidth = function(v){ if (v != this.dom().width) { this.dom().width = v }; return this; };
 			tag.prototype.__height = {dom: true,name: 'height'};
 			tag.prototype.height = function(v){ return this.dom().height; }
-			tag.prototype.setHeight = function(v){ if(v != this.dom().height){ this.dom().height = v }; return this; };
+			tag.prototype.setHeight = function(v){ if (v != this.dom().height) { this.dom().height = v }; return this; };
 			
 			tag.prototype.context = function (type){
 				if(type === undefined) type = '2d';
@@ -1919,7 +1919,7 @@
 		tag$.defineTag('fieldset', function(tag){
 			tag.prototype.__disabled = {dom: true,name: 'disabled'};
 			tag.prototype.disabled = function(v){ return this.dom().disabled; }
-			tag.prototype.setDisabled = function(v){ if(v != this.dom().disabled){ this.dom().disabled = v }; return this; };
+			tag.prototype.setDisabled = function(v){ if (v != this.dom().disabled) { this.dom().disabled = v }; return this; };
 		});
 		
 		tag$.defineTag('figcaption');
@@ -1967,19 +1967,19 @@
 			
 			tag.prototype.__value = {dom: true,name: 'value'};
 			tag.prototype.value = function(v){ return this.dom().value; }
-			tag.prototype.setValue = function(v){ if(v != this.dom().value){ this.dom().value = v }; return this; };
+			tag.prototype.setValue = function(v){ if (v != this.dom().value) { this.dom().value = v }; return this; };
 			tag.prototype.__placeholder = {dom: true,name: 'placeholder'};
 			tag.prototype.placeholder = function(v){ return this.dom().placeholder; }
-			tag.prototype.setPlaceholder = function(v){ if(v != this.dom().placeholder){ this.dom().placeholder = v }; return this; };
+			tag.prototype.setPlaceholder = function(v){ if (v != this.dom().placeholder) { this.dom().placeholder = v }; return this; };
 			tag.prototype.__required = {dom: true,name: 'required'};
 			tag.prototype.required = function(v){ return this.dom().required; }
-			tag.prototype.setRequired = function(v){ if(v != this.dom().required){ this.dom().required = v }; return this; };
+			tag.prototype.setRequired = function(v){ if (v != this.dom().required) { this.dom().required = v }; return this; };
 			tag.prototype.__disabled = {dom: true,name: 'disabled'};
 			tag.prototype.disabled = function(v){ return this.dom().disabled; }
-			tag.prototype.setDisabled = function(v){ if(v != this.dom().disabled){ this.dom().disabled = v }; return this; };
+			tag.prototype.setDisabled = function(v){ if (v != this.dom().disabled) { this.dom().disabled = v }; return this; };
 			tag.prototype.__checked = {dom: true,name: 'checked'};
 			tag.prototype.checked = function(v){ return this.dom().checked; }
-			tag.prototype.setChecked = function(v){ if(v != this.dom().checked){ this.dom().checked = v }; return this; };
+			tag.prototype.setChecked = function(v){ if (v != this.dom().checked) { this.dom().checked = v }; return this; };
 		});
 		
 		tag$.defineTag('ins');
@@ -2021,19 +2021,19 @@
 		tag$.defineTag('optgroup', function(tag){
 			tag.prototype.__disabled = {dom: true,name: 'disabled'};
 			tag.prototype.disabled = function(v){ return this.dom().disabled; }
-			tag.prototype.setDisabled = function(v){ if(v != this.dom().disabled){ this.dom().disabled = v }; return this; };
+			tag.prototype.setDisabled = function(v){ if (v != this.dom().disabled) { this.dom().disabled = v }; return this; };
 		});
 		
 		tag$.defineTag('option', function(tag){
 			tag.prototype.__disabled = {dom: true,name: 'disabled'};
 			tag.prototype.disabled = function(v){ return this.dom().disabled; }
-			tag.prototype.setDisabled = function(v){ if(v != this.dom().disabled){ this.dom().disabled = v }; return this; };
+			tag.prototype.setDisabled = function(v){ if (v != this.dom().disabled) { this.dom().disabled = v }; return this; };
 			tag.prototype.__selected = {dom: true,name: 'selected'};
 			tag.prototype.selected = function(v){ return this.dom().selected; }
-			tag.prototype.setSelected = function(v){ if(v != this.dom().selected){ this.dom().selected = v }; return this; };
+			tag.prototype.setSelected = function(v){ if (v != this.dom().selected) { this.dom().selected = v }; return this; };
 			tag.prototype.__value = {dom: true,name: 'value'};
 			tag.prototype.value = function(v){ return this.dom().value; }
-			tag.prototype.setValue = function(v){ if(v != this.dom().value){ this.dom().value = v }; return this; };
+			tag.prototype.setValue = function(v){ if (v != this.dom().value) { this.dom().value = v }; return this; };
 		});
 		
 		tag$.defineTag('output');
@@ -2081,13 +2081,13 @@
 			
 			tag.prototype.__disabled = {dom: true,name: 'disabled'};
 			tag.prototype.disabled = function(v){ return this.dom().disabled; }
-			tag.prototype.setDisabled = function(v){ if(v != this.dom().disabled){ this.dom().disabled = v }; return this; };
+			tag.prototype.setDisabled = function(v){ if (v != this.dom().disabled) { this.dom().disabled = v }; return this; };
 			tag.prototype.__required = {dom: true,name: 'required'};
 			tag.prototype.required = function(v){ return this.dom().required; }
-			tag.prototype.setRequired = function(v){ if(v != this.dom().required){ this.dom().required = v }; return this; };
+			tag.prototype.setRequired = function(v){ if (v != this.dom().required) { this.dom().required = v }; return this; };
 			tag.prototype.__value = {dom: true,name: 'value'};
 			tag.prototype.value = function(v){ return this.dom().value; }
-			tag.prototype.setValue = function(v){ if(v != this.dom().value){ this.dom().value = v }; return this; };
+			tag.prototype.setValue = function(v){ if (v != this.dom().value) { this.dom().value = v }; return this; };
 		});
 		
 		
@@ -2113,16 +2113,16 @@
 			
 			tag.prototype.__value = {dom: true,name: 'value'};
 			tag.prototype.value = function(v){ return this.dom().value; }
-			tag.prototype.setValue = function(v){ if(v != this.dom().value){ this.dom().value = v }; return this; };
+			tag.prototype.setValue = function(v){ if (v != this.dom().value) { this.dom().value = v }; return this; };
 			tag.prototype.__disabled = {dom: true,name: 'disabled'};
 			tag.prototype.disabled = function(v){ return this.dom().disabled; }
-			tag.prototype.setDisabled = function(v){ if(v != this.dom().disabled){ this.dom().disabled = v }; return this; };
+			tag.prototype.setDisabled = function(v){ if (v != this.dom().disabled) { this.dom().disabled = v }; return this; };
 			tag.prototype.__required = {dom: true,name: 'required'};
 			tag.prototype.required = function(v){ return this.dom().required; }
-			tag.prototype.setRequired = function(v){ if(v != this.dom().required){ this.dom().required = v }; return this; };
+			tag.prototype.setRequired = function(v){ if (v != this.dom().required) { this.dom().required = v }; return this; };
 			tag.prototype.__placeholder = {dom: true,name: 'placeholder'};
 			tag.prototype.placeholder = function(v){ return this.dom().placeholder; }
-			tag.prototype.setPlaceholder = function(v){ if(v != this.dom().placeholder){ this.dom().placeholder = v }; return this; };
+			tag.prototype.setPlaceholder = function(v){ if (v != this.dom().placeholder) { this.dom().placeholder = v }; return this; };
 		});
 		
 		tag$.defineTag('tfoot');
@@ -3556,7 +3556,7 @@
 
 	(function(){
 		function iter$(a){ return a ? (a.toArray ? a.toArray() : a) : []; };
-		var ImbaTag = Imba.TAGS.element;
+		var ImbaTag = Imba.Tag;
 		
 		function removeNested(root,node,caret){
 			// if node/nodes isa String
@@ -3727,13 +3727,147 @@
 		
 		
 		// expects a flat non-sparse array of nodes in both new and old, always
-		function reconcileCollection(root,new$,old,caret){
-			var k = new$.length;
-			var i = k;
-			var last = new$[k - 1];
+		
+		/*
+		We should optimize for the common cases:
+		 - node(s) inserted to top or bottom
+		 - node(s) removed from top or bottom
+		 - nodes pushed/popped - same order (ring)
+		 - many changes - opt out of smart algorithm
+		
+		how does a full reverse / arbitrary sort work now?
+		how many changes?
+		what if there are 
+		*/
+		
+		function reconcileCollection(root,new$,old,caret,topLevel){
+			var l1 = new$.length;
+			var l0 = old.length;
+			var ld = l1 - l0;
+			
+			var i = l1;
+			
+			var last = new$[l1 - 1];
+			
+			// if l0 == l1
+			// check for cycle change
+			if (ld == 0) {
+				if (l0 == 0) { return caret };
+				var offset = old.indexOf(new$[0]);
+				var k = 0;
+				
+				if (offset >= 0) {
+					while (k < l1){
+						var el1 = new$[k];
+						var el0 = old[(k + offset) % l1];
+						if (el1 != el0) { break; };
+						k++;
+					};
+					
+					if (k == l1 && topLevel) {
+						k = 0;
+						
+						// should go through and prepend instead
+						if (offset > (l1 / 2)) {
+							while (offset < l1){
+								// root.insertBefore(node,before)
+								root.insertBefore(old[offset],old[0]);
+								offset++;
+							};
+						} else {
+							while (k < offset){
+								root.appendChild(old[k++]);
+							};
+						};
+						
+						return last && last._dom || caret;
+					};
+				};
+			} else if (ld > 0) {
+				// now check for inserted elements
+				// these are very similar - just mirrored. refactor
+				if (l0 == 0) {
+					// console.log 'append everything'
+					appendNested(root,new$,caret);
+					return last && last._dom || caret;
+				};
+				
+				// is it likely that the new nodes are appended?
+				if (old[0] == new$[0] && old[l0 - 1] == new$[l0 - 1]) {
+					var k1 = 0;
+					while (k1 < l0){
+						if (old[k1] != new$[k1]) { break; };
+						k1++;
+					};
+					
+					if (k1 == l0) {
+						// console.log 'append to list',l0,l1,new.slice(l0),old[l0 - 1]
+						insertNestedAfter(root,new$.slice(l0),old[l0 - 1]._dom);
+						return last && last._dom || caret;
+					};
+				} else if (new$[l1 - 1] == old[l0 - 1]) {
+					// console.log 'last is the same'
+					// the last items are the same -- likely added to top
+					var start = new$.indexOf(old[0]);
+					if (start >= 0) {
+						var k2 = 0;
+						while (k2 < l0){
+							if (new$[k2 + start] != old[k2]) { break; };
+							k2++;
+						};
+						
+						if (k2 == l0) {
+							// console.log 'all are added top the top'
+							insertNestedBefore(root,new$.slice(0,start),old[0]);
+							return last && last._dom || caret;
+						};
+					};
+				};
+			} else if (ld < 0) {
+				if (l1 == 0) {
+					removeNested(root,old,caret);
+					return caret;
+				};
+				
+				// removals are likely at the end
+				if (old[0] == new$[0] && old[l1 - 1] == new$[l1 - 1]) {
+					var k3 = 0;
+					while (k3 < l1){
+						if (old[k3] != new$[k3]) { break; };
+						k3++;
+					};
+					if (k3 == l1) {
+						// console.log 'removal at the end',l0,l1
+						if (ld == -1) {
+							root.removeChild(old[l1]);
+						} else {
+							removeNested(root,old.slice(l1),caret);
+						};
+						return last && last._dom || caret;
+					};
+				} else if (new$[l1 - 1] == old[l0 - 1]) {
+					// probably from the start
+					var start1 = old.indexOf(new$[0]);
+					if (start1 >= 0) {
+						var k4 = 0;
+						while (k4 < l1){
+							if (new$[k4] != old[k4 + start1]) { break; };
+							k4++;
+						};
+						
+						if (k4 == l1) {
+							// console.log 'removal at the start',k,l1,l0
+							while (start1 > 0){
+								root.removeChild(old[--start1]);
+							};
+							return last && last._dom || caret;
+						};
+					};
+				};
+			};
 			
 			
-			if (k == old.length && new$[0] === old[0]) {
+			if (l0 >= l1 && new$[0] === old[0]) {
 				// running through to compare
 				while (i--){
 					if (new$[i] !== old[i]) { break; };
@@ -3741,6 +3875,13 @@
 			};
 			
 			if (i == -1) {
+				if (l0 > l1) {
+					while (l0 > l1){
+						// does not work for text nodes
+						root.removeChild(old[--l0]);
+					};
+				};
+				
 				return last && last._dom || caret;
 			} else {
 				return reconcileCollectionChanges(root,new$,old,caret);
@@ -3751,18 +3892,9 @@
 		// caret is the current node we want to insert things after
 		function reconcileNested(root,new$,old,caret){
 			
-			// if new == null or new === false or new === true
-			// 	if new === old
-			// 		return caret
-			// 	if old && new != old
-			// 		removeNested(root,old,caret) if old
-			// 
-			// 	return caret
-			
 			// var skipnew = new == null or new === false or new === true
 			var newIsNull = new$ == null || new$ === false;
 			var oldIsNull = old == null || old === false;
-			
 			
 			if (new$ === old) {
 				// remember that the caret must be an actual dom element
@@ -3865,7 +3997,7 @@
 					} else if (new$ instanceof Array) {
 						if (old instanceof Array) {
 							// is this not the same as setting staticChildren now but with the
-							reconcileCollection(this,new$,old,null);
+							reconcileCollection(this,new$,old,null,true);
 						} else {
 							this.empty();
 							appendNested(this,new$);
@@ -3875,7 +4007,7 @@
 						return this;
 					};
 				} else if ((new$ instanceof Array) && (old instanceof Array)) {
-					reconcileCollection(this,new$,old,null);
+					reconcileCollection(this,new$,old,null,true);
 				} else {
 					this.empty();
 					appendNested(this,new$);
@@ -8010,6 +8142,15 @@
 			};
 		});
 		
+		
+		tag$.defineTag('single-list', 'group', function(tag){
+			
+			tag.prototype.render = function (items){
+				if(items === undefined) items = [];
+				return this.setChildren(items,3).synced();
+			};
+		});
+		
 		tag$.defineTag('unknowns', 'div', function(tag){
 			
 			tag.prototype.ontap = function (){
@@ -8238,6 +8379,30 @@
 					
 					group.render({list: full});
 					return eq(group.opstr(),"II");
+				});
+				
+				test("cycling",function() {
+					var list = tag$.$single_list().end();
+					var items = [
+						tag$.$el().flag('a').setText("a").end(),
+						tag$.$el().flag('b').setText("b").end(),
+						tag$.$el().flag('c').setText("c").end(),
+						tag$.$el().flag('d').setText("d").end(),
+						tag$.$el().flag('e').setText("e").end()
+					];
+					list.render(items);
+					items = items.slice();
+					items.push(items.shift());
+					items.push(items.shift());
+					list.render(items);
+					eq(list.opstr(),"AA");
+					
+					var i2 = items.slice();
+					i2.unshift(i2.pop());
+					i2.unshift(i2.pop());
+					list.render(i2);
+					eq(list.opstr(),"II");
+					return console.log('finishing this');
 				});
 				
 				return test("should be reorderable",function() {

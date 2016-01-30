@@ -168,6 +168,12 @@ tag group5 < group
 			"b"
 			a ? (<el.c> "c") : "d"
 
+
+tag single-list < group
+
+	def render items = []
+		<self> items
+
 tag unknowns < div
 
 	def ontap
@@ -364,6 +370,29 @@ describe "Tags" do
 
 			group.render list: full
 			eq group.opstr, "II"
+
+		test "cycling" do
+			var list = <single-list>
+			var items = [
+				<el.a> "a"
+				<el.b> "b"
+				<el.c> "c"
+				<el.d> "d"
+				<el.e> "e"
+			]
+			list.render items
+			items = items.slice
+			items.push(items.shift)
+			items.push(items.shift)
+			list.render items
+			eq list.opstr, "AA"
+
+			var i2 = items.slice
+			i2.unshift(i2.pop)
+			i2.unshift(i2.pop)
+			list.render i2
+			eq list.opstr, "II"
+			console.log 'finishing this'
 
 		test "should be reorderable" do
 

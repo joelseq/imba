@@ -1,4 +1,4 @@
-var ImbaTag = Imba.TAGS:element
+var ImbaTag = Imba.Tag
 
 def removeNested root, node, caret
 	# if node/nodes isa String
@@ -145,18 +145,137 @@ def reconcileCollectionChanges root, new, old, caret
 
 
 # expects a flat non-sparse array of nodes in both new and old, always
-def reconcileCollection root, new, old, caret
-	var k = new:length
-	var i = k
-	var last = new[k - 1]
+
+###
+We should optimize for the common cases:
+ - node(s) inserted to top or bottom
+ - node(s) removed from top or bottom
+ - nodes pushed/popped - same order (ring)
+ - many changes - opt out of smart algorithm
+
+how does a full reverse / arbitrary sort work now?
+how many changes?
+what if there are 
+###
+def reconcileCollection root, new, old, caret, topLevel
+	var l1 = new:length
+	var l0 = old:length
+	var ld = l1 - l0
+
+	var i = l1
+
+	var last = new[l1 - 1]
+
+	# if l0 == l1
+	# check for cycle change
+	if ld == 0
+		return caret if l0 == 0
+		let offset = old.indexOf(new[0])
+		let k = 0
+
+		if offset >= 0
+			while k < l1
+				let el1 = new[k]
+				let el0 = old[(k + offset) % l1]
+				break if el1 != el0
+				k++
+
+			if k == l1 and topLevel
+				k = 0
+
+				# should go through and prepend instead
+				if offset > (l1 / 2)
+					while offset < l1
+						# root.insertBefore(node,before)
+						root.insertBefore(old[offset],old[0])
+						offset++
+				else
+					while k < offset
+						root.appendChild(old[k++])
+
+				return last and last.@dom or caret
+
+	
+	elif ld > 0
+		# now check for inserted elements
+		# these are very similar - just mirrored. refactor
+		if l0 == 0
+			# console.log 'append everything'
+			appendNested(root,new,caret)
+			return last and last.@dom or caret
+
+		# is it likely that the new nodes are appended?
+		if old[0] == new[0] and old[l0 - 1] == new[l0 - 1]
+			let k = 0
+			while k < l0
+				break if old[k] != new[k]
+				k++
+
+			if k == l0
+				# console.log 'append to list',l0,l1,new.slice(l0),old[l0 - 1]
+				insertNestedAfter(root,new.slice(l0),old[l0 - 1].@dom)
+				return last and last.@dom or caret
+
+		elif new[l1 - 1] == old[l0 - 1]
+			# console.log 'last is the same'
+			# the last items are the same -- likely added to top
+			let start = new.indexOf(old[0])
+			if start >= 0
+				let k = 0
+				while k < l0
+					break if new[k + start] != old[k]
+					k++
+
+				if k == l0
+					# console.log 'all are added top the top'
+					insertNestedBefore(root,new.slice(0,start),old[0])
+					return last and last.@dom or caret
+	elif ld < 0
+		if l1 == 0
+			removeNested(root,old,caret)
+			return caret
+
+		# removals are likely at the end
+		if old[0] == new[0] and old[l1 - 1] == new[l1 - 1]
+			let k = 0
+			while k < l1
+				break if old[k] != new[k]
+				k++
+			if k == l1
+				# console.log 'removal at the end',l0,l1
+				if ld == -1
+					root.removeChild(old[l1])
+				else
+					removeNested(root,old.slice(l1),caret)
+				return last and last.@dom or caret
+
+		elif new[l1 - 1] == old[l0 - 1]
+			# probably from the start
+			let start = old.indexOf(new[0])
+			if start >= 0
+				let k = 0
+				while k < l1
+					break if new[k] != old[k + start]
+					k++
+
+				if k == l1
+					# console.log 'removal at the start',k,l1,l0
+					while start > 0
+						root.removeChild(old[--start])
+					return last and last.@dom or caret
 
 
-	if k == old:length and new[0] === old[0]
+	if l0 >= l1 and new[0] === old[0]
 		# running through to compare
 		while i--
 			break if new[i] !== old[i]
 
 	if i == -1
+		if l0 > l1
+			while l0 > l1
+				# does not work for text nodes
+				root.removeChild(old[--l0])
+
 		return last and last.@dom or caret
 	else
 		return reconcileCollectionChanges(root,new,old,caret)
@@ -165,18 +284,9 @@ def reconcileCollection root, new, old, caret
 # caret is the current node we want to insert things after
 def reconcileNested root, new, old, caret
 
-	# if new == null or new === false or new === true
-	# 	if new === old
-	# 		return caret
-	# 	if old && new != old
-	# 		removeNested(root,old,caret) if old
-	# 
-	# 	return caret
-
 	# var skipnew = new == null or new === false or new === true
 	var newIsNull = new == null or new === false
 	var oldIsNull = old == null or old === false
-
 
 	if new === old
 		# remember that the caret must be an actual dom element
@@ -277,7 +387,7 @@ extend tag htmlelement
 			elif new isa Array
 				if old isa Array
 					# is this not the same as setting staticChildren now but with the
-					reconcileCollection(self,new,old,null)
+					reconcileCollection(self,new,old,null,yes)
 				else
 					empty
 					appendNested(self,new)
@@ -287,7 +397,7 @@ extend tag htmlelement
 				return self
 
 		elif new isa Array and old isa Array
-			reconcileCollection(self,new,old,null)
+			reconcileCollection(self,new,old,null,yes)
 		else
 			empty
 			appendNested(self,new)
