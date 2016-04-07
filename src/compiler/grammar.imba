@@ -338,6 +338,10 @@ var grammar =
 		o 'TagDeclarationBlock' do A1
 		o 'EXTEND TagDeclarationBlock' do A2.set(extension: yes)
 		o 'LOCAL TagDeclarationBlock' do A2.set(local: yes)
+		o 'EXPORT TagDeclarationBlock' do A2.set(export: A1)
+		o 'GLOBAL TagDeclarationBlock' do A2.set(global: A1)
+		o 'EXPORT GLOBAL TagDeclarationBlock' do A3.set(global: A1, export: A2)
+
 	]
 
 	TagDeclarationBlock: [
@@ -545,7 +549,7 @@ var grammar =
 
 	# Variables and properties that can be assigned to.
 	SimpleAssignable: [
-
+		o 'ENV_FLAG' do EnvFlag.new(A1)
 		o 'Const'
 		o 'Ivar' do IvarAccess.new('.',null,A1)
 		o 'Gvar'

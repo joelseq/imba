@@ -77,18 +77,14 @@ class SourceFile
 		var data = {}
 
 		try
-			@meta = ast.analyze(loglevel: 0, entities: o:entities, scopes: yes)
+			@meta = ast.analyze(loglevel: 0, entities: o:entities, scopes: yes, target: o:target)
 			cb and cb(@meta)
-			# resolve(self.meta)
 		catch e
-			# console.log "something wrong {e:message}"
 			unless e isa ERR.ImbaParseError
 				if e:lexer
 					e = ERR.ImbaParseError.new(e, tokens: e:lexer:tokens, pos: e:lexer:pos)
 				else
 					throw e
-					# e = {message: e:message}
-
 
 			@meta = {warnings: [e]}
 			cb and cb(@meta)
@@ -98,15 +94,7 @@ class SourceFile
 	def run
 		process:argv.shift
 		process:argv[0] = 'imba'
-		Imbac.run(code, filename: @path)
-
-	def htmlify
-		var out = compiler.highlight(code,filename: @path)
-		fs.writeFileSync(@path.replace(/\.imba$/,'.html'),out)
-		console.log "htmlify code",out
-		return out
-
-
+		Imbac.run(code, filename: @path, target: 'node')
 
 def log *pars
 	console.log(*pars)
@@ -427,7 +415,8 @@ cli.command('compile <path>')
 	.description('compile scripts')
 	.option('-m, --source-map-inline', 'Embed inline sourcemap in compiled JavaScript')
 	.option('-s, --standalone', 'Embed utils from Imba runtime')
-	.option('-b, --bare', 'Skipp wrapping code in outer closure')
+	.option('-t, --target [platform]', 'Compile for specific platform')
+	.option('-b, --bare', 'Skip wrapping code in outer closure')
 	.option('-o, --output [dest]', 'set the output directory for compiled JavaScript')
 	.action do |path,o| cli-compile path, o, watch: no
 
@@ -435,13 +424,15 @@ cli.command('watch <path>')
 	.description('listen for changes and compile scripts')
 	.option('-m, --source-map-inline', 'Embed inline sourcemap in compiled JavaScript')
 	.option('-s, --standalone', 'Embed utils from Imba runtime')
-	.option('-b, --bare', 'Skipp wrapping code in outer closure')
+	.option('-t, --target [platform]', 'Compile for specific platform')
+	.option('-b, --bare', 'Skip wrapping code in outer closure')
 	.option('-o, --output [dest]', 'set the output directory for compiled JavaScript')
-	.action do |root,o| cli-compile(root,o,watch: yes)
+	.action do |path,o| cli-compile(path,o,watch: yes)
 
 cli.command('analyze <path>')
 	.description('get information about scopes, variables and more')
-	.option('-t, --tokens', 'print the raw tokens')
+	.option('--tokens', 'print the raw tokens')
+	.option('--target [platform]', 'Compile for specific platform')
 	.option('-e, --entities', 'print the raw tokens')
 	.action do |path, opts|
 		var file = sourcefile-for-path(path)

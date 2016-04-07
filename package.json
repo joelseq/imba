@@ -33,10 +33,11 @@
     "build-parser": "imba scripts/build-parser.imba",
     "build": "webpack --progress --colors --display-modules",
     "watch": "webpack --watch --progress --colors --display-modules",
-    "test": "bin/imba test/index.imba"
+    "test": "bin/imba test/index.imba",
+    "test-phantom": "phantomjs test/client.js"
   },
   "bugs": "https://github.com/somebee/imba/issues",
-  "version": "0.14.5",
+  "version": "0.15.0-alpha.2",
   "licenses": [
     {
       "type": "MIT",
@@ -48,10 +49,10 @@
   },
   "directories": {},
   "main": "./index.js",
-  "browser": "./lib/imba/browser.js",
   "webpack": "./index",
   "bin": {
-    "imba": "./bin/imba"
+    "imba": "./bin/imba",
+    "imbapack": "./bin/imbapack"
   },
   "preferGlobal": true,
   "homepage": "http://imba.io",

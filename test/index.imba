@@ -28,9 +28,16 @@ require './syntax/formatting'
 require './syntax/issues'
 
 require './tags/define'
+require './tags/caching'
 
-if Imba.CLIENT
+if $web$
 	require './tags/virtual'
+	require './tags/svg'
 
+extern phantom
 
-SPEC.run
+SPEC.run do |exitCode|
+	if typeof phantom == 'object'
+		phantom.exit(exitCode)
+	elif typeof process == 'object' && process:exit
+		process.exit(exitCode)

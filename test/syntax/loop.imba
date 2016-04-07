@@ -1,4 +1,4 @@
-# self = SPEC
+extern describe, test, ok, eq, it
 
 class SyntaxLoopsObj
 	prop value
@@ -193,6 +193,16 @@ describe 'Syntax - Loops' do
 
 		eq res, ['a','b']
 		return
+
+	test "#72: self reference in for-in-expression" do
+		class A
+			def initialize
+				@v = 1
+
+			def map
+				(x * @v for x in [1,2,3]).join("-")
+
+		eq A.new.map, "1-2-3"
 
 	describe "Loop" do
 
